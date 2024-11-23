@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Yourself - Periodic Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+
+        .question {
+            margin-bottom: 10px;
+        }
+
+        .question p {
+            font-weight: bold;
+        }
+
+        .question input {
+            margin-top: 5px;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .btn-submit {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            font-size: 1.1em;
+        }
+
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .incorrect {
+            color: red;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #4CAF50;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Test Yourself - Periodic Table</h1>
+    </header>
+
+    <div class="container">
+        <h2>Periodic Table Quiz</h2>
+        <form id="quizForm">
+            <div class="question">
+                <p>1. What is the chemical symbol for Gold?</p>
+                <input type="text" id="q1" placeholder="Enter your answer" required>
+            </div>
+
+            <div class="question">
+                <p>2. Which element has the atomic number 6?</p>
+                <input type="text" id="q2" placeholder="Enter your answer" required>
+            </div>
+
+            <div class="question">
+                <p>3. Which group do the Noble Gases belong to?</p>
+                <input type="text" id="q3" placeholder="Enter your answer" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit Answers</button>
+        </form>
+
+        <div class="feedback" id="feedback"></div>
+    </div>
+
+    <footer class="footer">
+        &copy; 2024 Periodic Table Test. All rights reserved.
+    </footer>
+
+    <script>
+        // Function to check answers
+        document.getElementById("quizForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Correct answers
+            const correctAnswers = {
+                q1: "Au",
+                q2: "Carbon",
+                q3: "18"
+            };
+
+            // Get user inputs
+            const userAnswers = {
+                q1: document.getElementById("q1").value.trim(),
+                q2: document.getElementById("q2").value.trim(),
+                q3: document.getElementById("q3").value.trim()
+            };
+
+            // Check answers and provide feedback
+            let feedback = "";
+            let score = 0;
+
+            // Question 1
+            if (userAnswers.q1.toUpperCase() === correctAnswers.q1) {
+                feedback += "<p class='correct'>Question 1: Correct! The chemical symbol for Gold is Au.</p>";
+                score++;
+            } else {
+                feedback += "<p class='incorrect'>Question 1: Incorrect. The correct answer is Au.</p>";
+            }
+
+            // Question 2
+            if (userAnswers.q2.toLowerCase() === correctAnswers.q2.toLowerCase()) {
+                feedback += "<p class='correct'>Question 2: Correct! The element with atomic number 6 is Carbon.</p>";
+                score++;
+            } else {
+                feedback += "<p class='incorrect'>Question 2: Incorrect. The correct answer is Carbon.</p>";
+            }
+
+            // Question 3
+            if (userAnswers.q3 === correctAnswers.q3) {
+                feedback += "<p class='correct'>Question 3: Correct! The Noble Gases belong to Group 18.</p>";
+                score++;
+            } else {
+                feedback += "<p class='incorrect'>Question 3: Incorrect. The correct answer is Group 18.</p>";
+            }
+
+            // Display final feedback
+            feedback += `<p><strong>Your Score: ${score} out of 3</strong></p>`;
+            document.getElementById("feedback").innerHTML = feedback;
+        });
+    </script>
+</body>
+</html>
